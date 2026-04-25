@@ -35,4 +35,4 @@ Regardless of source diagram syntax:
 
 ## Rule of thumb
 
-Markdown Viewer skills define the diagram's logic. `minimal-editorial-visuals` defines the finished visual style.
+Markdown Viewer skills define the diagram's logic. `minimal-graph` defines the finished visual style.

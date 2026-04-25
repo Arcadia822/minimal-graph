@@ -1,9 +1,9 @@
 ---
-name: minimal-editorial-visuals
+name: minimal-graph
 description: Create strict minimal editorial visuals for WeChat articles, Xiaohongshu cards, covers, and technical infographics. Use whenever the user asks for WeChat article images, Xiaohongshu multi-page cards, HTML/CSS/SVG infographics, Markdown Viewer diagrams, cover images, phone-readable Chinese diagrams, or wants a reusable visual template with Maple font and black-white editorial rules.
 ---
 
-# Minimal Editorial Visuals
+# Minimal Graph
 
 Create deterministic, phone-readable editorial visuals with a restrained black-white system. Use generated images only as illustration assets; put all Chinese text, layout, charts, labels, and page chrome in HTML/CSS/SVG or Markdown Viewer-derived diagrams.
 

@@ -1,4 +1,4 @@
-# Minimal Editorial Visual Style
+# Minimal Graph Style
 
 Use this as the canonical visual system for WeChat article covers, Xiaohongshu cards, and technical editorial infographics.
 
