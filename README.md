@@ -10,6 +10,23 @@ A reusable OpenClaw/agent skill for creating strict minimal editorial visuals:
 
 The skill captures practical rules from repeated production of WeChat article visuals and Xiaohongshu social cards.
 
+
+## Previews
+
+### WeChat cover
+
+![WeChat cover preview](assets/previews/wechat-cover.png)
+
+### WeChat infographic
+
+![WeChat feedback flow preview](assets/previews/wechat-feedback-flow.png)
+
+### Xiaohongshu card set
+
+| Cover | Workflow | Skills |
+|---|---|---|
+| ![XHS cover](assets/previews/xhs-cover.png) | ![XHS workflow](assets/previews/xhs-workflow.png) | ![XHS skills](assets/previews/xhs-skills.png) |
+
 ## What this skill enforces
 
 - Maple font for all visible text by default
