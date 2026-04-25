@@ -1,6 +1,6 @@
 # Minimal Graph Style
 
-Use this as the canonical visual system for WeChat article covers, Xiaohongshu cards, and technical editorial infographics.
+Use this as the canonical visual system for technical editorial infographics, cards, and flow diagrams.
 
 ## Core identity
 
@@ -60,15 +60,15 @@ Recommended CSS:
 .signature{font-style:italic}
 ```
 
-## WeChat cover images
+## Cover images
 
-A WeChat cover is illustration-first, not an infographic with an illustration module.
+A Cover is illustration-first, not an infographic with an illustration module.
 
 - The generated illustration is the full main visual / background of the image.
 - Overlay the article title on top of the illustration with HTML/CSS for exact Chinese typography.
 - Do not place the illustration inside a card, frame, chart module, or infographic grid.
 - Keep title/UI slightly above center.
-- Reserve the bottom 18–22% of the image as a WeChat title-overlay safety zone with no essential text.
+- Reserve the bottom 18–22% of the image as a cover title-overlay safety zone with no essential text.
 - Cover UI must follow the same Maple, translucent black title block, straight-line, no-rounded-corner rules.
 - The cover may have emotional color and atmosphere from the illustration; the overlaid title/UI remains disciplined and minimal.
 - Use HTML for exact Chinese title text; never rely on image generation for readable Chinese title text.
@@ -142,14 +142,14 @@ Do not use SVG doodles as a substitute when the user asks for generated illustra
 - If labels need readability, place them above the message line with whitespace, not by masking the line behind them.
 - Crossings should not create white breaks.
 
-## WeChat Cover Text Minimalism v12
+## Cover Text Minimalism v12
 
 - Cover images should not include footer text, source text, signature, safety-zone hint, implementation tag, or small explanatory copy.
 - Default cover text: main title only.
 - Optional: one very short title-internal qualifier only when the article title needs it.
 - Do not add metadata to covers; metadata belongs in article body or infographic pages.
 
-## WeChat Cover Title Block Proportion v13
+## Cover Title Block Proportion v13
 
 - Title block width must fit the title, not stretch as a generic banner.
 - Use intrinsic width (`display:inline-block`, `width:auto`, or measured text width) unless a deliberate full-width editorial block is requested.

@@ -40,7 +40,7 @@ Run this against the final screenshot.
 - [ ] Mermaid arrows use the same line tone and 1px weight.
 - [ ] Mermaid visually belongs to the page.
 
-## WeChat cover checks
+## Cover checks
 
 - [ ] Bottom 18–22% safety zone contains no essential title/UI text.
 - [ ] Title overlay uses HTML text, not generated-image text.

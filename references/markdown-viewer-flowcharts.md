@@ -17,7 +17,7 @@ Use Markdown Viewer diagram skills as the structure generator for flowcharts and
 
 Regardless of source diagram syntax:
 
-- Use Maple for final visible text when rendered inside Arcadia visuals.
+- Use Maple for final visible text when rendered inside the requested signature visuals.
 - Use pure white background.
 - Use black text and one global 1px line tone.
 - Remove or avoid semantic color palettes unless the user explicitly requests them.
@@ -29,9 +29,9 @@ Regardless of source diagram syntax:
 ## Practical workflow
 
 1. Use the Markdown Viewer skill to choose the right diagram grammar and draft the diagram structure.
-2. Render/export or translate the structure into the Arcadia HTML page.
-3. If renderer output is hard to restyle, use it as layout reference and redraw in HTML/SVG with Arcadia theme.
-4. Screenshot the final Arcadia page and run `references/html-infographic-checklist.md`.
+2. Render/export or translate the structure into the the requested signature HTML page.
+3. If renderer output is hard to restyle, use it as layout reference and redraw in HTML/SVG with the requested signature theme.
+4. Screenshot the final the requested signature page and run `references/html-infographic-checklist.md`.
 
 ## Rule of thumb
 

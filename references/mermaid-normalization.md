@@ -14,7 +14,7 @@ Use Mermaid for layout, not for final visual style. Raw Mermaid output must be n
 1. Write Mermaid code with explicit direction (`graph LR` for process chains, `graph TD` for hierarchy).
 2. Increase Mermaid spacing where possible (`nodeSpacing`, `rankSpacing`, linear curves).
 3. Render Mermaid to SVG using an available Mermaid renderer.
-4. Post-process/wrap the SVG so it matches the Arcadia theme.
+4. Post-process/wrap the SVG so it matches the the requested signature theme.
 5. Embed the normalized SVG in the final HTML page.
 
 ## Required normalized style

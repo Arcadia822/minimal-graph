@@ -2,7 +2,7 @@
 
 ## Sources
 
-- Iterative Feishu feedback, 2026-04-25/26: WeChat cover constraints, Xiaohongshu card template, Maple font requirement, footer rules, Markdown Viewer rendering, generated illustration modes, clipping/collision corrections.
+- Iterative Feishu feedback, 2026-04-25/26: Cover constraints, social card card template, Maple font requirement, footer rules, Markdown Viewer rendering, generated illustration modes, clipping/collision corrections.
 - `getsentry/skills/skills/skill-writer` at commit `a2366b1`: used for skill structure, progressive disclosure, description optimization, validation expectations.
 - `intellectronica/agent-skills/skills/beautiful-mermaid` at commit `bb17b53`: informed Mermaid SVG rendering workflow and post-processing approach.
 - `subframe7536/maple-font` release `v7.9`: MapleMono-CN font family selected as the default text font.
