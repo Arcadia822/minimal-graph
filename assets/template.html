@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Arcadia Infographic</title>
+<style>
+@font-face{font-family:Maple;src:url('{{MAPLE_REGULAR_URL}}') format('truetype');font-weight:400}
+@font-face{font-family:Maple;src:url('{{MAPLE_MEDIUM_URL}}') format('truetype');font-weight:500}
+@font-face{font-family:Maple;src:url('{{MAPLE_ITALIC_URL}}') format('truetype');font-weight:400;font-style:italic}
+:root{--bg:#fff;--ink:#111;--line:rgba(0,0,0,.42);--block:rgba(0,0,0,.82)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Maple,monospace;color:var(--ink)}
+.canvas{width:2048px;height:1152px;background:#fff;position:relative;overflow:hidden;padding:64px 72px}
+.line{position:absolute;background:var(--line)}.hline{height:1px}.vline{width:1px}
+.title-block{position:absolute;left:72px;top:64px;background:var(--block);color:white;padding:30px 42px 34px;font-weight:500;font-size:56px;line-height:1;white-space:nowrap}
+.thesis{position:absolute;left:72px;top:194px;width:1720px;font-size:24px;line-height:1.45}
+.section-title{font-size:31px;font-weight:500;line-height:1.2}.body{font-size:22px;font-weight:400;line-height:1.48}.small{font-size:16px;opacity:.58;line-height:1.35}
+.tag{display:inline-block;background:var(--block);color:white;padding:7px 18px 8px;font-size:19px;font-weight:400}
+.source,.signature{position:absolute;bottom:34px;font-size:15px;opacity:.48;font-weight:400;color:#111}.source{left:72px}.signature{right:72px;font-style:italic}
+.frame{position:absolute;border:1px solid var(--line);border-radius:0}.frame img{position:absolute;left:1px;top:1px;width:calc(100% - 2px);height:calc(100% - 2px);object-fit:cover}
+</style>
+</head>
+<body><div class="canvas"><!-- content --><div class="source"></div><div class="signature">Arcadia</div></div></body>
+</html>
