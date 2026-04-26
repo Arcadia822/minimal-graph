@@ -1,13 +1,165 @@
-# Minimal Graph
+# minimal-graph
 
-一个用于生成极简信息图和流程图的 Agent Skill。
+> 极简、确定性、可复用的图像 / 信息图 / 流程图生成逻辑。
 
-它只关注两条工程路径：
+`minimal-graph` 是一个面向 agent 的过程文档型 skill。它只负责**出图本身**：图形结构、版式、字体与可读性、渲染检查，以及源文件和输出文件的组织方式。
+它**不**把某个平台的发布 SOP、文案套路、投放动作硬编码进核心 skill。
+
+## 这个 skill 解决什么问题
+
+- 需要一张**结构清楚、文字可控、可复现**的视觉资产，而不是一次性的“看起来差不多”图片。
+- 需要把信息图、流程图、卡片图、封面图做成**可继续维护**的 HTML / SVG / 源语法文件，而不只是最终 PNG。
+- 需要在核心视觉稳定之后，再按渠道生成**派生版本**，但又不想让 xhs / wx 之类的平台细节污染主逻辑。
+
+## 核心定位
+
+| 负责 | 不负责 |
+|---|---|
+| 图形结构、阅读顺序、布局层级 | 平台发布流程 |
+| 文字可读性、字体一致性、裁切检查 | 平台文案模板 |
+| HTML / CSS / SVG 或图表语法的确定性渲染 | 上传、发布、运营动作 |
+| 源文件与输出文件归档 | 把渠道约束写死进核心规则 |
+
+## 快速开始
+
+1. 安装 skill。
+2. 让 agent 在出图任务里加载 `minimal-graph`。
+3. 按任务类型继续读对应 reference，而不是把所有细节都塞进主 skill。
 
 ```text
-HTML / CSS / SVG → PNG
-Markdown Viewer / skills → SVG → PNG
+需求：做一张中文流程图，移动端可读，可导出 PNG，保留 SVG 源文件。
+动作：加载 minimal-graph → 选结构 → 生成 SVG / PNG → 检查裁切与重叠 → 归档源文件和输出。
 ```
+
+## 安装
+
+### 方式一：支持 skill 安装的环境
+
+```bash
+npx @openclaw/clawhub install github:Arcadia822/minimal-graph
+```
+
+### 方式二：直接放入本地 skills 目录
+
+```bash
+git clone https://github.com/Arcadia822/minimal-graph.git ~/workspace/skills/minimal-graph
+```
+
+### 方式三：让 agent 代装
+
+```text
+请安装这个 skill：https://github.com/Arcadia822/minimal-graph
+```
+
+## 任务入口怎么选
+
+| 你要做的事 | 先读什么 |
+|---|---|
+| 任意确定性视觉资产 | [`SKILL.md`](./SKILL.md) |
+| 极简版式、中文信息层级、文字风格 | [`references/editorial-minimal-style.md`](./references/editorial-minimal-style.md) |
+| HTML 信息图落版与检查 | [`references/html-infographic-checklist.md`](./references/html-infographic-checklist.md) |
+| Markdown Viewer / Graphviz / UML / BPMN 流程图 | [`references/markdown-viewer-flowcharts.md`](./references/markdown-viewer-flowcharts.md) |
+| Mermaid 结构整理与规范化 | [`references/mermaid-normalization.md`](./references/mermaid-normalization.md) |
+| 渠道外挂设计与调用边界 | [`references/channel-addons.md`](./references/channel-addons.md) |
+
+## 两条核心工程路径
+
+### 1. HTML / CSS / SVG -> PNG
+
+适合需要精确控制以下要素的视觉资产：
+
+- 标题和正文文字
+- 布局网格
+- 边框、箭头、标签
+- 数据图形或信息块层级
+
+基本路径：
+
+1. 创建固定视口的 HTML 页面。
+2. 用 `@font-face` 加载字体。
+3. 用 HTML / CSS / SVG 明确写出结构和文字。
+4. 渲染并截图为 PNG。
+5. 检查字体、裁切、重叠、对齐与移动端可读性。
+
+### 2. Markdown Viewer / 图表语法 -> SVG -> PNG
+
+适合先用语法描述结构，再进行统一渲染：
+
+- Graphviz DOT
+- Mermaid
+- PlantUML / BPMN / UML
+- 其他可稳定导出 SVG 的图表语法
+
+基本路径：
+
+1. 先保存结构源文件，例如 `.dot`、`.mmd`、`.puml`。
+2. 优先渲染为 SVG。
+3. 再用真实矢量渲染器导出 PNG。
+4. 如果默认样式不满足最小化可读性要求，就把 SVG 当布局参考重绘。
+
+常见导出工具：
+
+- `rsvg-convert`
+- Chromium screenshot
+- CairoSVG
+- ImageMagick
+
+## 渠道外挂模块
+
+核心 skill 不直接内嵌 xhs / wx 等渠道逻辑。
+如果某个输出需要渠道化派生版本，使用 `references/channel-addons/` 下的外挂模块。
+
+当前已提供：
+
+| Channel | 说明 | 文件 |
+|---|---|---|
+| `xhs` | 面向小红书浏览场景的派生打包约束 | [`references/channel-addons/xhs.md`](./references/channel-addons/xhs.md) |
+| `wx-official-account` | 面向微信公众号文章封面 / 文章配图的派生打包约束 | [`references/channel-addons/wx-official-account.md`](./references/channel-addons/wx-official-account.md) |
+
+调用方式是：
+
+1. 先完成**渠道无关**的核心视觉。
+2. 再选择一个 channel addon。
+3. 把 addon 的 `prompt_addon` 叠加到核心要求之后。
+4. 仅在核心渲染通过检查后，才触发该渠道的 `posthook` 做派生打包。
+
+最小示例：
+
+```text
+channel=xhs
+variant=feed-cover
+```
+
+```text
+channel=wx-official-account
+variant=article-cover
+```
+
+未来可自然扩展到：
+
+- `x`
+- `x-article`
+- `medium`
+
+## 输出组织
+
+推荐把每组视觉资产组织成“源文件 + 主输出 + 渠道派生”的结构：
+
+```text
+<project>/
+├── page.html / diagram.dot / diagram.svg
+├── output.png
+├── outputs/
+│   └── <variant>.png
+└── channels/
+    └── <channel>/
+```
+
+这样做的目的不是“多存几份文件”，而是保证：
+
+- 核心视觉可复现
+- 渠道派生不覆盖主输出
+- 后续改版能回到源文件继续演进
 
 ## 预览
 
@@ -19,80 +171,32 @@ Markdown Viewer / skills → SVG → PNG
 
 ![流程图示例 2](assets/previews/flow-preview-02.png)
 
-## 工程流程
-
-### HTML / CSS / SVG → PNG
-
-适合需要精确控制文字、布局、边框、箭头、图表和整体版式的图片。
-
-流程：
-
-1. 创建固定尺寸的 HTML 页面。
-2. 用 `@font-face` 加载所需字体。
-3. 用 HTML / CSS / SVG 写出图形结构。
-4. 用浏览器截图生成 PNG。
-5. 检查最终截图中的字体、裁切、重叠和可读性。
-
-### Markdown Viewer / skills → SVG → PNG
-
-适合先用图表语法生成结构，再统一转成图片。
-
-流程：
-
-1. 使用 Markdown Viewer 或相关 skill 生成图表结构。
-2. 保存结构源文件，例如 `.dot`、`.puml`、`.mmd`、`.svg`。
-3. 先渲染为 SVG。
-4. 用矢量渲染器转换成 PNG。
-5. 如果原生样式不符合要求，就把 SVG 当布局参考，用 HTML / SVG 重新绘制。
-
-常用转换工具：
-
-- `rsvg-convert`
-- Chromium screenshot
-- CairoSVG
-- ImageMagick
-
-## 文件结构
+## 仓库结构
 
 ```text
 minimal-graph/
+├── README.md
 ├── SKILL.md
 ├── SOURCES.md
 ├── assets/
-│   └── previews/
+│   ├── previews/
+│   └── template.html
 └── references/
+    ├── channel-addons.md
+    ├── channel-addons/
     ├── editorial-minimal-style.md
     ├── html-infographic-checklist.md
     ├── markdown-viewer-flowcharts.md
-    └── mermaid-normalization.md
+    ├── mermaid-normalization.md
+    └── skill-red-review.md
 ```
 
-## 安装
+## 设计说明与来源
 
-### 方式一：手动安装
-
-使用 `npx` 从 GitHub 安装：
-
-```bash
-npx @openclaw/clawhub install github:Arcadia822/minimal-graph
-```
-
-如果你的环境没有配置 ClawHub，也可以直接 clone 到 skills 目录：
-
-```bash
-git clone https://github.com/Arcadia822/minimal-graph.git ~/workspace/skills/minimal-graph
-```
-
-### 方式二：让 agent 安装
-
-对支持安装 skill 的 agent 说：
-
-```text
-请安装这个 skill：https://github.com/Arcadia822/minimal-graph
-```
-
-安装完成后，让 agent 在需要生成极简信息图或流程图时使用 `minimal-graph`。
+- 核心 skill 的职责边界见 [`SKILL.md`](./SKILL.md)。
+- RED 审阅与失败场景见 [`references/skill-red-review.md`](./references/skill-red-review.md)。
+- 设计来源与改写依据见 [`SOURCES.md`](./SOURCES.md)。
 
 ## 许可证
 
-MIT。来源和变更记录见 `SOURCES.md`。
+MIT。
