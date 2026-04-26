@@ -29,9 +29,9 @@ Regardless of source diagram syntax:
 ## Practical workflow
 
 1. Use the Markdown Viewer skill to choose the right diagram grammar and draft the diagram structure.
-2. Render/export or translate the structure into the the requested signature HTML page.
+2. Render/export or translate the structure into the requested HTML page.
 3. If renderer output is hard to restyle, use it as layout reference and redraw in HTML/SVG with the requested signature theme.
-4. Screenshot the final the requested signature page and run `references/html-infographic-checklist.md`.
+4. Screenshot the final page and run `references/html-infographic-checklist.md`.
 
 ## Rule of thumb
 

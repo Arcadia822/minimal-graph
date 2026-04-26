@@ -1,9 +1,41 @@
+![minimal-graph overview](assets/previews/minimal-graph-overview.png)
+
 # minimal-graph
 
 > 极简、确定性、可复用的图像 / 信息图 / 流程图生成逻辑。
 
 `minimal-graph` 是一个面向 agent 的过程文档型 skill。它只负责**出图本身**：图形结构、版式、字体与可读性、渲染检查，以及源文件和输出文件的组织方式。
 它**不**把某个平台的发布 SOP、文案套路、投放动作硬编码进核心 skill。
+
+## 安装
+
+### 推荐：让 agent 自动安装
+
+把下面这句话交给支持 skill 安装的 agent：
+
+```text
+请安装并加载这个 skill：https://github.com/Arcadia822/minimal-graph
+```
+
+安装后，在出图任务里直接要求 agent 使用 `minimal-graph`，并产出源文件、主图和检查结果。
+
+### 命令安装
+
+```bash
+npx @openclaw/clawhub install github:Arcadia822/minimal-graph
+```
+
+## 使用案例
+
+```text
+帮我做一张 16:9 中文流程图，解释“AI 文章配图从需求到发布”的完整流程。
+要求：极简风格，移动端能看清，保留 HTML/SVG 源文件，导出 PNG，并检查有没有文字重叠或裁切。
+```
+
+```text
+把“RAG 系统的检索、重排、生成、评估链路”做成一张适合 README 顶部展示的信息图。
+要求：有节点、箭头、图标和简短说明，不要随机生成不可编辑文字，最后给我 PNG 和源文件。
+```
 
 ## 这个 skill 解决什么问题
 
@@ -19,37 +51,6 @@
 | 文字可读性、字体一致性、裁切检查 | 平台文案模板 |
 | HTML / CSS / SVG 或图表语法的确定性渲染 | 上传、发布、运营动作 |
 | 源文件与输出文件归档 | 把渠道约束写死进核心规则 |
-
-## 快速开始
-
-1. 安装 skill。
-2. 让 agent 在出图任务里加载 `minimal-graph`。
-3. 按任务类型继续读对应 reference，而不是把所有细节都塞进主 skill。
-
-```text
-需求：做一张中文流程图，移动端可读，可导出 PNG，保留 SVG 源文件。
-动作：加载 minimal-graph → 选结构 → 生成 SVG / PNG → 检查裁切与重叠 → 归档源文件和输出。
-```
-
-## 安装
-
-### 方式一：支持 skill 安装的环境
-
-```bash
-npx @openclaw/clawhub install github:Arcadia822/minimal-graph
-```
-
-### 方式二：直接放入本地 skills 目录
-
-```bash
-git clone https://github.com/Arcadia822/minimal-graph.git ~/workspace/skills/minimal-graph
-```
-
-### 方式三：让 agent 代装
-
-```text
-请安装这个 skill：https://github.com/Arcadia822/minimal-graph
-```
 
 ## 任务入口怎么选
 
@@ -116,30 +117,12 @@ git clone https://github.com/Arcadia822/minimal-graph.git ~/workspace/skills/min
 | `xhs` | 面向小红书浏览场景的派生打包约束 | [`references/channel-addons/xhs.md`](./references/channel-addons/xhs.md) |
 | `wx-official-account` | 面向微信公众号文章封面 / 文章配图的派生打包约束 | [`references/channel-addons/wx-official-account.md`](./references/channel-addons/wx-official-account.md) |
 
-调用方式是：
+调用方式：
 
 1. 先完成**渠道无关**的核心视觉。
 2. 再选择一个 channel addon。
 3. 把 addon 的 `prompt_addon` 叠加到核心要求之后。
 4. 仅在核心渲染通过检查后，才触发该渠道的 `posthook` 做派生打包。
-
-最小示例：
-
-```text
-channel=xhs
-variant=feed-cover
-```
-
-```text
-channel=wx-official-account
-variant=article-cover
-```
-
-未来可自然扩展到：
-
-- `x`
-- `x-article`
-- `medium`
 
 ## 输出组织
 
@@ -161,16 +144,6 @@ variant=article-cover
 - 渠道派生不覆盖主输出
 - 后续改版能回到源文件继续演进
 
-## 预览
-
-### 流程图示例 1
-
-![流程图示例 1](assets/previews/flow-preview-01.png)
-
-### 流程图示例 2
-
-![流程图示例 2](assets/previews/flow-preview-02.png)
-
 ## 仓库结构
 
 ```text
@@ -180,21 +153,26 @@ minimal-graph/
 ├── SOURCES.md
 ├── assets/
 │   ├── previews/
+│   │   ├── minimal-graph-overview.png
+│   │   └── minimal-graph-overview.html
 │   └── template.html
+├── illustrations/
+│   └── minimal-graph-overview/
+│       ├── outline.md
+│       ├── prompts/
+│       └── 01-ai-illustration-panel.png
 └── references/
     ├── channel-addons.md
     ├── channel-addons/
     ├── editorial-minimal-style.md
     ├── html-infographic-checklist.md
     ├── markdown-viewer-flowcharts.md
-    ├── mermaid-normalization.md
-    └── skill-red-review.md
+    └── mermaid-normalization.md
 ```
 
 ## 设计说明与来源
 
 - 核心 skill 的职责边界见 [`SKILL.md`](./SKILL.md)。
-- RED 审阅与失败场景见 [`references/skill-red-review.md`](./references/skill-red-review.md)。
 - 设计来源与改写依据见 [`SOURCES.md`](./SOURCES.md)。
 
 ## 许可证

@@ -70,12 +70,4 @@ Run the `posthook` only after:
 | `xhs` | `references/channel-addons/xhs.md` | Feed-first derivative packaging for XiaoHongShu style distribution. |
 | `wx-official-account` | `references/channel-addons/wx-official-account.md` | Article-cover derivative packaging for WeChat official-account style distribution. |
 
-## Future expansion
-
-Add new files under `references/channel-addons/` for channels such as:
-
-- `x`
-- `x-article`
-- `medium`
-
-The core skill should not change unless the addon seam itself changes.
+Add new channel modules only when a real derivative output needs one. The core skill should not change unless the addon contract itself changes.

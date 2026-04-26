@@ -22,7 +22,7 @@ Create deterministic visual assets with explicit structure and restrained stylin
 | Any deterministic visual asset | `references/editorial-minimal-style.md` and `references/html-infographic-checklist.md` |
 | Markdown Viewer flowchart / UML / BPMN / Graphviz / architecture diagram | `references/markdown-viewer-flowcharts.md` |
 | Mermaid/process diagram | `references/mermaid-normalization.md` |
-| Channel-specific prompt addons or post-render packaging | `references/skill-red-review.md`, `references/channel-addons.md`, and the matching file under `references/channel-addons/` |
+| Channel-specific prompt addons or post-render packaging | `references/channel-addons.md` and the matching file under `references/channel-addons/` |
 
 ## Core rules
 

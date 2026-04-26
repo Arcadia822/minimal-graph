@@ -6,7 +6,7 @@
 - `getsentry/skills/skills/skill-writer` at commit `a2366b1`: used for skill structure, progressive disclosure, description optimization, validation expectations.
 - `intellectronica/agent-skills/skills/beautiful-mermaid` at commit `bb17b53`: informed Mermaid SVG rendering workflow and post-processing approach.
 - `subframe7536/maple-font` release `v7.9`: MapleMono-CN font family selected as the default text font.
-- Local guide `/Users/arcadia/.agents/skills/writing-skills/SKILL.md`: used to drive RED analysis, description cleanup, and the separation between core rendering rules and channel-specific addons.
+- Local guide `/Users/arcadia/.agents/skills/writing-skills/SKILL.md`: used to review skill structure, description cleanup, and the separation between core rendering rules and channel-specific addons.
 - `anthropics/claude-code` README and `openai/codex` README: informed the rewritten README information architecture around value proposition, quick start, install paths, and progressive document routing.
 
 ## Authoring decisions
