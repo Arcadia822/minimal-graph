@@ -1,11 +1,38 @@
-![minimal-graph overview](assets/previews/minimal-graph-overview.png)
-
 # minimal-graph
 
-> 极简、确定性、可复用的图像 / 信息图 / 流程图生成逻辑。
+> 一套极简、确定性、可复用的图像 / 信息图 / 流程图主题与 agent 生成逻辑。
 
-`minimal-graph` 是一个面向 agent 的过程文档型 skill。它只负责**出图本身**：图形结构、版式、字体与可读性、渲染检查，以及源文件和输出文件的组织方式。
-它**不**把某个平台的发布 SOP、文案套路、投放动作硬编码进核心 skill。
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Agent Skill](https://img.shields.io/badge/Agent_Skill-minimal--graph-111111.svg)](#安装)
+[![Output](https://img.shields.io/badge/Output-HTML%20%2F%20SVG%20%2F%20PNG-6b7280.svg)](#两条核心工程路径)
+
+<img src="assets/previews/minimal-graph-overview.png" alt="minimal-graph theme overview — deterministic diagrams, visual charts, AI illustration insertion, layout inspection" width="100%">
+
+## 这是什么
+
+`minimal-graph` 是一套面向 agent 的视觉主题和过程文档型 skill，用来生成**结构清楚、文字可控、可复现**的技术视觉资产。
+
+它不是普通生图 prompt，也不是平台发布 SOP。它把图像生成拆成可检查的工程流程：先确定阅读顺序和图形结构，再用 HTML / SVG / 图表语法生成源文件，最后渲染 PNG 并检查裁切、重叠、字体和移动端可读性。
+
+## 主题说明
+
+| 主题规则 | 说明 |
+|---|---|
+| 白底黑字 | 用留白、距离和层级组织信息，不靠装饰撑场面。 |
+| 单一 1px 线条系统 | 边框、箭头、分隔线保持统一线色和线宽。 |
+| 中文信息层级可控 | 标题、节点、标签、注释都由确定性排版负责。 |
+| AI 插画受控嵌入 | 生成图只作为视觉资产，不接管标题、标签和结构。 |
+| 源文件可维护 | HTML / SVG / Mermaid / DOT 等源文件和 PNG 一起保留。 |
+
+## 解决什么问题
+
+| 常见反模式 | `minimal-graph` 的做法 |
+|---|---|
+| 一次性生成“看起来差不多”的图片 | 保留源文件、渲染路径和最终 PNG。 |
+| 生图模型生成不可控文字 | 所有重要文字由 HTML / SVG / 图表语法排版。 |
+| 流程图节点、箭头、标签互相挤压 | 先做结构规划，再截图检查裁切和重叠。 |
+| 为不同平台复制多套核心逻辑 | 先产出渠道无关主图，再用 channel addon 做派生版本。 |
+| README 顶图和文章配图缺少统一风格 | 使用同一套极简主题生成可复用视觉资产。 |
 
 ## 安装
 
@@ -37,13 +64,17 @@ npx @openclaw/clawhub install github:Arcadia822/minimal-graph
 要求：有节点、箭头、图标和简短说明，不要随机生成不可编辑文字，最后给我 PNG 和源文件。
 ```
 
-## 这个 skill 解决什么问题
+## 核心能力
 
-- 需要一张**结构清楚、文字可控、可复现**的视觉资产，而不是一次性的“看起来差不多”图片。
-- 需要把信息图、流程图、卡片图、封面图做成**可继续维护**的 HTML / SVG / 源语法文件，而不只是最终 PNG。
-- 需要在核心视觉稳定之后，再按渠道生成**派生版本**，但又不想让 xhs / wx 之类的平台细节污染主逻辑。
+| 能力 | 适合场景 | 关键产物 |
+|---|---|---|
+| 复杂流程图 | 产品流程、AI 工作流、业务链路、技术架构 | HTML / SVG / PNG |
+| 可视化图表 | 指标解释、对比图、趋势图、流程指标 | 可编辑源文件 + 截图 |
+| AI 插画嵌入 | README 顶图、文章配图、封面局部视觉增强 | 受控 raster asset |
+| 版式与检查 | 移动端可读、裁切检查、重叠检查 | 渲染截图 + 检查结果 |
+| 渠道派生 | xhs / wx 等不同交付版本 | 主输出 + derivative variant |
 
-## 核心定位
+## 核心边界
 
 | 负责 | 不负责 |
 |---|---|
@@ -65,14 +96,9 @@ npx @openclaw/clawhub install github:Arcadia822/minimal-graph
 
 ## 两条核心工程路径
 
-### 1. HTML / CSS / SVG -> PNG
+### HTML / CSS / SVG -> PNG
 
-适合需要精确控制以下要素的视觉资产：
-
-- 标题和正文文字
-- 布局网格
-- 边框、箭头、标签
-- 数据图形或信息块层级
+适合需要精确控制标题、正文、布局网格、边框、箭头、标签、数据图形或信息块层级的视觉资产。
 
 基本路径：
 
@@ -82,7 +108,7 @@ npx @openclaw/clawhub install github:Arcadia822/minimal-graph
 4. 渲染并截图为 PNG。
 5. 检查字体、裁切、重叠、对齐与移动端可读性。
 
-### 2. Markdown Viewer / 图表语法 -> SVG -> PNG
+### Markdown Viewer / 图表语法 -> SVG -> PNG
 
 适合先用语法描述结构，再进行统一渲染：
 
@@ -93,7 +119,7 @@ npx @openclaw/clawhub install github:Arcadia822/minimal-graph
 
 基本路径：
 
-1. 先保存结构源文件，例如 `.dot`、`.mmd`、`.puml`。
+1. 保存结构源文件，例如 `.dot`、`.mmd`、`.puml`。
 2. 优先渲染为 SVG。
 3. 再用真实矢量渲染器导出 PNG。
 4. 如果默认样式不满足最小化可读性要求，就把 SVG 当布局参考重绘。
@@ -107,8 +133,7 @@ npx @openclaw/clawhub install github:Arcadia822/minimal-graph
 
 ## 渠道外挂模块
 
-核心 skill 不直接内嵌 xhs / wx 等渠道逻辑。
-如果某个输出需要渠道化派生版本，使用 `references/channel-addons/` 下的外挂模块。
+核心 skill 不直接内嵌 xhs / wx 等渠道逻辑。如果某个输出需要渠道化派生版本，使用 `references/channel-addons/` 下的外挂模块。
 
 当前已提供：
 
@@ -126,8 +151,6 @@ npx @openclaw/clawhub install github:Arcadia822/minimal-graph
 
 ## 输出组织
 
-推荐把每组视觉资产组织成“源文件 + 主输出 + 渠道派生”的结构：
-
 ```text
 <project>/
 ├── page.html / diagram.dot / diagram.svg
@@ -138,13 +161,13 @@ npx @openclaw/clawhub install github:Arcadia822/minimal-graph
     └── <channel>/
 ```
 
-这样做的目的不是“多存几份文件”，而是保证：
+这样做是为了保证：
 
 - 核心视觉可复现
 - 渠道派生不覆盖主输出
 - 后续改版能回到源文件继续演进
 
-## 仓库结构
+## 项目结构
 
 ```text
 minimal-graph/
@@ -170,6 +193,26 @@ minimal-graph/
     └── mermaid-normalization.md
 ```
 
+## GitHub 元信息建议
+
+Repository description:
+
+```text
+Create deterministic minimal diagrams, infographics, README visuals, and reusable visual assets with HTML/SVG/PNG source control for AI agents.
+```
+
+Topics:
+
+```text
+agent-skill, infographic, diagram, svg, html-to-png, mermaid, graphviz, readme-assets, visual-system, ai-illustration
+```
+
+## 关于作者
+
+| | |
+|:---|:---|
+| GitHub | [Arcadia822](https://github.com/Arcadia822) |
+
 ## 设计说明与来源
 
 - 核心 skill 的职责边界见 [`SKILL.md`](./SKILL.md)。
@@ -177,4 +220,4 @@ minimal-graph/
 
 ## 许可证
 
-MIT。
+[MIT](./LICENSE)。
