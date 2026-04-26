@@ -13,6 +13,7 @@ Run this against the final screenshot.
 - [ ] Title fits inside its block with safe padding.
 - [ ] Thesis has no awkward manual line break.
 - [ ] Header/body/footer whitespace is optically balanced.
+- [ ] Sibling list/card/grid modules use the same outer container shape, border, radius, fill, height, and alignment.
 - [ ] No text, chart label, or Mermaid label is clipped.
 - [ ] No object/frame/text overlaps divider lines or footer.
 - [ ] Footer left is source/citation only, max one line or empty.
@@ -29,6 +30,7 @@ Run this against the final screenshot.
 
 - [ ] Generated illustration is raster/color artwork when requested, not an SVG placeholder.
 - [ ] Framed illustration uses a 1px image inset so the frame is visible.
+- [ ] Framed illustration keeps the same outer container treatment as sibling modules at the same hierarchy level.
 - [ ] Transparent/white object does not overlap text, arrows, labels, or footer.
 - [ ] Color exists only in illustration assets unless explicitly requested.
 

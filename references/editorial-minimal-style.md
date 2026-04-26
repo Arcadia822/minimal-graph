@@ -47,6 +47,13 @@ Rules:
 - Treat dividers as rhythm anchors.
 - Typical 16:9 rhythm: title top 60–72px; first body divider 280–315px; footer/source baseline 24–36px from bottom.
 
+## Sibling module consistency
+
+- Repeated list/card/grid items at the same hierarchy level must share the same container shape, border width, corner radius, fill, height, padding rhythm, and content alignment.
+- Do not make one item's image frame visually different just because it contains raster artwork. Apply the same outer container and put illustration-specific constraints inside it.
+- If a generated illustration is frame-contained, keep the image inset at 1px inside the shared outer frame so the border remains visible.
+- A different container treatment is allowed only when the layout explicitly introduces a different hierarchy level.
+
 ## Footer
 
 - Left: source/citation only, max one line; leave empty when no source is needed.
@@ -79,7 +86,7 @@ Use generated color artwork only in these modes:
 
 1. `frame-contained-generated`
    - Place raster illustration inside a rectangular frame.
-   - Frame uses the global 1px line style, no fill, no rounded corners.
+   - Frame follows the same outer container treatment as sibling modules at that hierarchy level.
    - Inset the image by 1px so the frame remains visible.
    - CSS pattern: `.frame img{left:1px;top:1px;width:calc(100% - 2px);height:calc(100% - 2px);object-fit:cover}`.
 

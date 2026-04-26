@@ -28,6 +28,7 @@ Create deterministic visual assets with explicit structure and restrained stylin
 
 - Use a consistent font system for every visible label; prefer Maple for Chinese when available.
 - Prefer white background, dark text, one global 1px line tone, and layout hierarchy over decoration.
+- In sibling lists or repeated modules, keep container shape, border, radius, fill, height, and alignment identical unless a deliberate hierarchy is explicitly requested.
 - Keep the reading order obvious: title → core structure → supporting labels → quiet metadata.
 - Reduce density before reducing font size.
 - If text or labels clip, overlap, or require zooming on mobile, the graphic is not done.
